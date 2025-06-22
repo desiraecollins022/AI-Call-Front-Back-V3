@@ -6,9 +6,11 @@ The AI Call Center is now **production-ready** and running successfully with all
 
 ## 🌐 Live URLs
 
-- **Frontend**: https://work-1-jnfacjbjjbrdzrlo.prod-runtime.all-hands.dev (port 12000)
-- **Backend API**: https://work-2-jnfacjbjjbrdzrlo.prod-runtime.all-hands.dev (port 12001)
-- **Health Check**: https://work-2-jnfacjbjjbrdzrlo.prod-runtime.all-hands.dev:12002/health
+- **Frontend**: https://work-1-uqgmjligulgfvwib.prod-runtime.all-hands.dev (port 12000)
+- **Backend API**: https://work-2-uqgmjligulgfvwib.prod-runtime.all-hands.dev (port 12001)
+- **Health Check**: https://work-2-uqgmjligulgfvwib.prod-runtime.all-hands.dev/health
+- **Multi-tenant Backend**: http://localhost:12003 (port 12003)
+- **Multi-tenant Health Check**: http://localhost:12003/health
 
 ## 🏗️ Architecture Overview
 
@@ -19,12 +21,26 @@ The AI Call Center is now **production-ready** and running successfully with all
 - **Features**: Real-time call interface, audio controls, conversation history
 
 ### Backend (Node.js + TypeScript)
-- **Port**: 12001 (Main API), 12002 (Health Check)
+- **Port**: 12001 (Main API + Health Check)
 - **Technology**: Node.js, Express, WebSocket, TypeScript
 - **Integrations**: 
   - ✅ Gemini AI API (configured)
   - ✅ Twilio Voice API (configured)
   - ✅ Supabase Database (configured)
+
+### Multi-tenant Backend (Node.js + TypeScript)
+- **Port**: 12003 (Multi-tenant API + Health Check)
+- **Technology**: Node.js, Express, WebSocket, TypeScript
+- **Integrations**: 
+  - ✅ Gemini AI API (configured)
+  - ✅ Twilio Voice API (configured)
+  - ✅ Supabase Database (configured)
+- **Features**:
+  - ✅ Multi-tenant support
+  - ✅ Client-specific configurations
+  - ✅ Flexible call routing
+  - ✅ Business hours routing
+  - ✅ IVR menu support
 
 ### Microservices Architecture
 1. **Audio Converter**: Handles audio format conversion and processing
@@ -94,7 +110,7 @@ pm2 start ecosystem.config.cjs
 ## 📁 Project Structure
 
 ```
-AI-Call-Front-Back-V2/
+AI-Call-Front-Back-V3/
 ├── packages/
 │   ├── audio-converter/     # Audio processing service
 │   ├── gemini-live-client/  # AI conversation client
@@ -137,13 +153,14 @@ pm2 restart ai-call-backend
 pm2 restart ai-call-frontend
 
 # Health check
-curl http://localhost:12002/health
+curl http://localhost:12001/health
 ```
 
 ### Service Ports
 - Frontend: 12000
 - Backend API: 12001
-- Health Check: 12002
+- Multi-tenant Backend: 12003
+- Health Check: 12001/health and 12003/health
 
 ## 🎯 Production Features
 
@@ -164,6 +181,11 @@ curl http://localhost:12002/health
 - **Call history** and conversation storage
 - **Web-based interface** for call management
 - **WebSocket connections** for real-time updates
+- **Multi-tenant support** for multiple clients
+- **Flexible call routing** with IVR menus
+- **Business hours routing** for after-hours handling
+- **Agent management** with different agent types
+- **Usage tracking** for billing purposes
 
 ---
 

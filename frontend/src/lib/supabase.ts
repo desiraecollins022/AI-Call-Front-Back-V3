@@ -28,7 +28,11 @@ export interface Profile {
   max_concurrent_calls: number
   twilio_phone_number?: string
   twilio_account_sid?: string
+  twilio_auth_token?: string
   gemini_api_key?: string
+  routing_strategy?: string
+  call_recording_enabled?: boolean
+  transcription_enabled?: boolean
   created_at: string
   updated_at: string
 }
@@ -38,23 +42,70 @@ export interface AIAgent {
   profile_id: string
   name: string
   description?: string
+  greeting?: string
   agent_type: 'customer_service' | 'sales' | 'support' | 'appointment_booking' | 'survey' | 'after_hours' | 'general'
   voice_name: 'Puck' | 'Charon' | 'Kore' | 'Fenrir' | 'Aoede' | 'Leda' | 'Orus' | 'Zephyr'
   language_code: string
   system_instruction?: string
   twilio_phone_number?: string
+  business_hours_start?: string
+  business_hours_end?: string
+  business_days?: number[]
   twilio_webhook_url?: string
   is_active: boolean
   max_concurrent_calls: number
-  business_hours_start?: string
-  business_hours_end?: string
-  business_days: number[]
-  timezone: string
-  escalation_enabled: boolean
+  timezone?: string
+  escalation_enabled?: boolean
   escalation_type?: 'human_agent' | 'supervisor' | 'voicemail' | 'callback'
   escalation_phone_number?: string
   escalation_email?: string
   status?: 'available' | 'busy' | 'offline'
+  created_at: string
+  updated_at: string
+}
+
+export interface PhoneNumber {
+  id: string
+  profile_id: string
+  phone_number: string
+  friendly_name: string
+  agent_id: string | null
+  is_primary: boolean
+  is_active: boolean
+  created_at: string
+  updated_at: string
+}
+
+export interface IVRMenu {
+  id: string
+  profile_id: string
+  name: string
+  greeting_text: string
+  is_active: boolean
+  ivr_options?: IVROption[]
+  created_at: string
+  updated_at: string
+}
+
+export interface IVROption {
+  id: string
+  ivr_menu_id: string
+  digit: string
+  description: string
+  agent_id: string | null
+  action_type: string
+  created_at: string
+  updated_at: string
+}
+
+export interface ExternalIntegration {
+  id: string
+  profile_id: string
+  name: string
+  integration_type: string
+  endpoint_url: string
+  auth_token?: string
+  is_active: boolean
   created_at: string
   updated_at: string
 }
@@ -173,6 +224,54 @@ export interface FunctionCallLog {
   success: boolean
   error_message?: string
   created_at: string
+}
+
+export interface PhoneNumber {
+  id: string
+  profile_id: string
+  phone_number: string
+  friendly_name?: string
+  agent_id?: string
+  is_primary: boolean
+  is_active: boolean
+  twilio_sid?: string
+  created_at: string
+  updated_at: string
+}
+
+export interface IVRMenu {
+  id: string
+  profile_id: string
+  name: string
+  greeting_text: string
+  timeout_seconds: number
+  max_attempts: number
+  is_active: boolean
+  created_at: string
+  updated_at: string
+  ivr_options?: IVROption[]
+}
+
+export interface IVROption {
+  id: string
+  ivr_menu_id: string
+  digit: string
+  description: string
+  agent_id?: string
+  action_type: string
+  action_data?: Record<string, any>
+  created_at: string
+  updated_at: string
+}
+
+export interface ExternalIntegration {
+  id: string
+  profile_id: string
+  integration_type: string
+  configuration: Record<string, any>
+  is_active: boolean
+  created_at: string
+  updated_at: string
 }
 
 export interface AnalyticsData {

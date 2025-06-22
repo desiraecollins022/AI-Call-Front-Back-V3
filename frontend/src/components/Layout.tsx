@@ -16,6 +16,7 @@ import {
   CreditCardIcon,
   UsersIcon,
   SignalIcon,
+  ArrowsRightLeftIcon,
 } from '@heroicons/react/24/outline';
 import { useAuth } from '../hooks/useAuth';
 import { usePermissions } from '../hooks/usePermissions';
@@ -25,6 +26,7 @@ const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: HomeIcon, permission: 'dashboard' },
   { name: 'Live Calls', href: '/live-calls', icon: SignalIcon, permission: 'calls' },
   { name: 'AI Agents', href: '/agents', icon: UserGroupIcon, permission: 'agents' },
+  { name: 'Call Routing', href: '/routing', icon: ArrowsRightLeftIcon, permission: 'agents' },
   { name: 'Call History', href: '/calls', icon: PhoneIcon, permission: 'calls' },
   { name: 'Appointments', href: '/appointments', icon: CalendarIcon, permission: 'appointments' },
   { name: 'Analytics', href: '/analytics', icon: ChartBarIcon, permission: 'analytics' },

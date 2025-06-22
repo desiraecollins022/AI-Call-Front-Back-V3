@@ -3,6 +3,8 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App.tsx';
 import ErrorBoundary from './components/ErrorBoundary.tsx';
+// Import database extensions to add new methods to DatabaseService
+import './services/database-extensions';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

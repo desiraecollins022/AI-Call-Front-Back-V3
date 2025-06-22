@@ -296,8 +296,8 @@ VITE_APP_VERSION=1.0.0
 
 ### 1. Backend Health Check
 ```bash
-curl https://your-backend-url.com/health
-# Should return: {"status":"ok","timestamp":"..."}
+curl https://work-2-uqgmjligulgfvwib.prod-runtime.all-hands.dev/health
+# Should return: {"status":"healthy","timestamp":"...","gemini":"configured","port":12001,"version":"1.0.0"}
 ```
 
 ### 2. Frontend Access

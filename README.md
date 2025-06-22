@@ -1,9 +1,9 @@
-# 🚀 AI Call Center - Production Ready
+# 🚀 AI Call Center - Production Ready (Multi-Tenant)
 
 ## 🎯 ONE COMMAND DEPLOY (Fresh Clone Ready)
 
 ```bash
-./one-command-deploy.sh
+./one-command-deploy-wrapper.sh
 ```
 
 **That's it!** This single command will:
@@ -15,9 +15,25 @@
 - ✅ Build frontend with Vite
 - ✅ Fix ES module import paths
 - ✅ Create production server and PM2 configuration
-- ✅ Start both frontend and backend services
+- ✅ Start frontend and backend services (including multi-tenant server)
 - ✅ Run comprehensive health checks
 - ✅ **ZERO human intervention required!**
+
+## 🚨 IMPORTANT: Deployment Verification
+
+After running the one-command deploy script, verify that all services are running correctly:
+
+1. **Main Backend**: 
+   - Health check: `curl http://localhost:12001/health`
+   - Expected response: `{"status":"healthy","timestamp":"...","gemini":"configured","port":12001,"version":"1.0.0"}`
+
+2. **Multi-tenant Backend**: 
+   - Health check: `curl http://localhost:12003/health`
+   - Expected response: `{"status":"healthy","timestamp":"...","gemini":"configured","supabase":"configured","port":12003,"version":"1.0.0"}`
+
+3. **Frontend**: 
+   - Access: `http://localhost:12000`
+   - Should load the login page
 
 ## Alternative (If Already Built)
 
@@ -27,11 +43,37 @@
 
 Use this if packages are already built and you just want to start services.
 
+## 🌟 Multi-Tenant Features
+
+This AI Call Center now supports multi-tenant capabilities, allowing you to:
+
+- 🏢 **Support Multiple Clients**: Each with their own configuration, agents, and phone numbers
+- 📞 **Flexible Call Routing**:
+  - Single number with IVR menu
+  - Multiple dedicated numbers
+  - Integration with existing phone systems
+  - Time-based routing (business hours vs. after hours)
+- 🤖 **Customizable AI Agents**: Create different agents for various departments and use cases
+- 📊 **Usage Tracking**: Monitor minutes used per client for billing purposes
+- 🔒 **Data Isolation**: Complete separation of data between tenants
+
+### Database Schema
+
+The multi-tenant functionality is supported by these database tables:
+- `ai_agents`: Store different AI agents with customizable voices and instructions
+- `phone_numbers`: Manage multiple phone numbers per client
+- `ivr_menus` and `ivr_options`: Configure IVR menus for call routing
+- `external_integrations`: Connect with existing phone systems
+- `call_sessions`: Track active calls with client-specific settings
+- `call_logs`: Record detailed call history per client
+
 ## 🌐 Live URLs
 
-- **Frontend**: https://work-1-jnfacjbjjbrdzrlo.prod-runtime.all-hands.dev
-- **Backend**: https://work-2-jnfacjbjjbrdzrlo.prod-runtime.all-hands.dev
-- **Health Check**: https://work-2-jnfacjbjjbrdzrlo.prod-runtime.all-hands.dev:12002/health
+- **Frontend**: https://work-1-uqgmjligulgfvwib.prod-runtime.all-hands.dev
+- **Backend**: https://work-2-uqgmjligulgfvwib.prod-runtime.all-hands.dev
+- **Health Check**: https://work-2-uqgmjligulgfvwib.prod-runtime.all-hands.dev/health
+- **Multi-tenant Backend**: https://work-3-uqgmjligulgfvwib.prod-runtime.all-hands.dev
+- **Multi-tenant Health Check**: https://work-3-uqgmjligulgfvwib.prod-runtime.all-hands.dev/health
 
 A complete AI-powered calling system with Twilio ↔ Gemini Live integration. This repository contains both the backend server and frontend dashboard in a single, organized structure.
 
