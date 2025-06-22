@@ -1,7 +1,9 @@
 {
     "name": "@tw2gem/server",
     "version": "1.0.1",
+    "type": "module",
     "main": "dist/index.js",
+    "types": "dist/index.d.ts",
     "files": [
         "dist/**/*"
     ],
@@ -40,5 +42,10 @@
         "@tw2gem/gemini-live-client": "1.0.1",
         "@tw2gem/twilio-server": "1.0.1",
         "ws": "^8.18.2"
+    },
+    "devDependencies": {
+        "@types/node": "^24.0.3",
+        "@types/ws": "^8.18.1",
+        "typescript": "^5.8.3"
     }
 }

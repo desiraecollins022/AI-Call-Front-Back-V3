@@ -1,4 +1,37 @@
-# AI Calling System - Full Stack
+# 🚀 AI Call Center - Production Ready
+
+## 🎯 ONE COMMAND DEPLOY (Fresh Clone Ready)
+
+```bash
+./one-command-deploy.sh
+```
+
+**That's it!** This single command will:
+- ✅ Install all global dependencies (PM2, serve, TypeScript)
+- ✅ Create environment files with production credentials
+- ✅ Fix all package.json files for ES modules
+- ✅ Install ALL dependencies (root + packages + frontend)
+- ✅ Build ALL packages with TypeScript compilation
+- ✅ Build frontend with Vite
+- ✅ Fix ES module import paths
+- ✅ Create production server and PM2 configuration
+- ✅ Start both frontend and backend services
+- ✅ Run comprehensive health checks
+- ✅ **ZERO human intervention required!**
+
+## Alternative (If Already Built)
+
+```bash
+./start-production.sh
+```
+
+Use this if packages are already built and you just want to start services.
+
+## 🌐 Live URLs
+
+- **Frontend**: https://work-1-jnfacjbjjbrdzrlo.prod-runtime.all-hands.dev
+- **Backend**: https://work-2-jnfacjbjjbrdzrlo.prod-runtime.all-hands.dev
+- **Health Check**: https://work-2-jnfacjbjjbrdzrlo.prod-runtime.all-hands.dev:12002/health
 
 A complete AI-powered calling system with Twilio ↔ Gemini Live integration. This repository contains both the backend server and frontend dashboard in a single, organized structure.
 

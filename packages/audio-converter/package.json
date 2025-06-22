@@ -1,7 +1,9 @@
 {
     "name": "@tw2gem/audio-converter",
     "version": "1.0.1",
+    "type": "module",
     "main": "dist/index.js",
+    "types": "dist/index.d.ts",
     "files": [
         "dist/**/*"
     ],
@@ -28,5 +30,9 @@
     "author": {
         "name": "Sebastian Morales Lorca",
         "email": "seba.morales.lorca@gmail.com"
+    },
+    "devDependencies": {
+        "@types/node": "^24.0.3",
+        "typescript": "^5.8.3"
     }
 }

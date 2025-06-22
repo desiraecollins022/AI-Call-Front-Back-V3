@@ -1,5 +1,5 @@
 import { WebSocketServer, CloseEvent, Event, ErrorEvent } from 'ws';
-import { TwilioConnectedEvent, TwilioDtmfEvent, TwilioEvent, TwilioMarkEvent, TwilioMediaEvent, TwilioServerOptions, TwilioStartEvent, TwilioStopEvent, TwilioWebSocket } from './twilio-server.dto';
+import { TwilioConnectedEvent, TwilioDtmfEvent, TwilioEvent, TwilioMarkEvent, TwilioMediaEvent, TwilioServerOptions, TwilioStartEvent, TwilioStopEvent, TwilioWebSocket } from './twilio-server.dto.js';
 
 export class TwilioWebSocketServer extends WebSocketServer {
 
