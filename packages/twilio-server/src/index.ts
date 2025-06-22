@@ -1,2 +1,2 @@
-export * from './twilio-server.dto';
-export * from './twilio-server';
+export * from './twilio-server.dto.js';
+export * from './twilio-server.js';

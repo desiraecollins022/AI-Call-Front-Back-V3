@@ -21,8 +21,8 @@ export class Tw2GemSocket extends TwilioWebSocket {
 }
 
 export class Tw2GemServerOptions {
-    serverOptions: ServerOptions;
-    geminiOptions: GeminiLiveClientOptions;
+    serverOptions!: ServerOptions;
+    geminiOptions!: GeminiLiveClientOptions;
     supabaseUrl?: string;
     supabaseKey?: string;
 }

@@ -1,2 +1,2 @@
-export * from './server';
-export * from './server.dto';
+export * from './server.js';
+export * from './server.dto.js';

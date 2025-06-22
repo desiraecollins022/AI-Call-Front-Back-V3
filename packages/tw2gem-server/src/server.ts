@@ -1,9 +1,9 @@
 import { TwilioMediaEvent, TwilioServerOptions, TwilioWebSocketServer } from '@tw2gem/twilio-server';
 import { BidiGenerateContentServerContent, GeminiLiveClient } from '@tw2gem/gemini-live-client';
-import { Tw2GemGeminiEvents, Tw2GemServerOptions, Tw2GemSocket } from './server.dto';
+import { Tw2GemGeminiEvents, Tw2GemServerOptions, Tw2GemSocket } from './server.dto.js';
 import { AudioConverter } from '@tw2gem/audio-converter';
-import { WebhookService } from './webhook-service';
-import { FunctionCallHandler } from './function-handler';
+import { WebhookService } from './webhook-service.js';
+import { FunctionCallHandler } from './function-handler.js';
 
 export class Tw2GemServer extends TwilioWebSocketServer {
 
@@ -152,8 +152,8 @@ export class Tw2GemServer extends TwilioWebSocketServer {
         if (!serverContent.modelTurn?.parts) return;
 
         const functionCalls = serverContent.modelTurn.parts
-            .filter(part => part.functionCall)
-            .map(part => part.functionCall);
+            .filter((part: any) => part.functionCall)
+            .map((part: any) => part.functionCall);
 
         for (const functionCall of functionCalls) {
             if (functionCall?.name && functionCall?.args) {
@@ -183,9 +183,9 @@ export class Tw2GemServer extends TwilioWebSocketServer {
                     // Send function result back to Gemini
                     if (socket.geminiClient) {
                         if (result.success) {
-                            socket.geminiClient.sendFunctionResponse(functionCall.name, result.result);
+                            (socket.geminiClient as any).sendFunctionResponse(functionCall.name, result.result);
                         } else {
-                            socket.geminiClient.sendFunctionResponse(functionCall.name, {
+                            (socket.geminiClient as any).sendFunctionResponse(functionCall.name, {
                                 error: result.error,
                                 success: false
                             });

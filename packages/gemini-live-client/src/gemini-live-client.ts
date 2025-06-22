@@ -1,4 +1,4 @@
-import { BidiGenerateContentRealtimeInput, BidiGenerateContentServerContent, BidiGenerateContentServerMessage, BidiRequest, GeminiLiveClientOptions } from './gemini-live.dto';
+import { BidiGenerateContentRealtimeInput, BidiGenerateContentServerContent, BidiGenerateContentServerMessage, BidiRequest, GeminiLiveClientOptions } from './gemini-live.dto.js';
 import { CloseEvent, ErrorEvent, MessageEvent, WebSocket } from 'ws';
 
 export class GeminiLiveClient {
@@ -6,7 +6,7 @@ export class GeminiLiveClient {
     private static readonly DEFAULT_GEMINI_BIDI_SERVER = 'wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1beta.GenerativeService.BidiGenerateContent';
 
     private socket: WebSocket;
-    public isReady: boolean;
+    public isReady: boolean = false;
 
     public onReady?: () => void;
     public onError?: (event: ErrorEvent) => void;
@@ -26,12 +26,12 @@ export class GeminiLiveClient {
         this.socket.onopen = this.sendSetup.bind(this);
         this.socket.onmessage = this.handlerMessage.bind(this);
 
-        this.socket.onerror = (event) => {
+        this.socket.onerror = (event: ErrorEvent) => {
             this.isReady = false;
             this.onError?.(event);
         };
 
-        this.socket.onclose = (event) => {
+        this.socket.onclose = (event: CloseEvent) => {
             this.isReady = false;
             this.onClose?.(event);
         };
