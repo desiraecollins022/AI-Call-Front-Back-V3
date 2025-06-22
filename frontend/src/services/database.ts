@@ -19,7 +19,7 @@ import type {
 
 export class DatabaseService {
   // Check if we're in demo mode
-  private static isDemoMode(): boolean {
+  static isDemoMode(): boolean {
     // Get the current mode from localStorage (set by AppContext)
     const appMode = localStorage.getItem('app_mode');
     return appMode === 'demo';

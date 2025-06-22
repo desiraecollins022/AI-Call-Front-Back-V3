@@ -103,6 +103,7 @@ install_all_dependencies() {
     # Root dependencies
     echo "Installing root dependencies..."
     npm install --silent
+    npm install @supabase/supabase-js --silent
     
     # Package dependencies
     for package in audio-converter gemini-live-client twilio-server tw2gem-server; do
@@ -388,7 +389,7 @@ run_health_checks() {
     
     # Check backend
     for i in {1..10}; do
-        if curl -s http://localhost:12002/health > /dev/null; then
+        if curl -s http://localhost:12001/health > /dev/null; then
             echo "✅ Backend health check: PASSED"
             break
         else
@@ -472,9 +473,9 @@ main() {
         echo ""
         echo "🎉 DEPLOYMENT SUCCESSFUL!"
         echo "========================"
-        echo "🌐 Frontend: https://work-1-jnfacjbjjbrdzrlo.prod-runtime.all-hands.dev"
-        echo "🔧 Backend: https://work-2-jnfacjbjjbrdzrlo.prod-runtime.all-hands.dev"
-        echo "🏥 Health: https://work-2-jnfacjbjjbrdzrlo.prod-runtime.all-hands.dev:12002/health"
+        echo "🌐 Frontend: https://work-1-uqgmjligulgfvwib.prod-runtime.all-hands.dev"
+        echo "🔧 Backend: https://work-2-uqgmjligulgfvwib.prod-runtime.all-hands.dev"
+        echo "🏥 Health: https://work-2-uqgmjligulgfvwib.prod-runtime.all-hands.dev/health"
         echo ""
         echo "📊 PM2 Status:"
         pm2 status

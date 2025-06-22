@@ -281,7 +281,7 @@ server.onClose = (socket, event) => {
 import twilio from 'twilio';
 import { createServer as createHttpServer } from 'http';
 
-const WEBHOOK_URL = `https://work-2-jnfacjbjjbrdzrlo.prod-runtime.all-hands.dev`;
+const WEBHOOK_URL = `https://work-2-uqgmjligulgfvwib.prod-runtime.all-hands.dev`;
 
 // Twilio webhook for incoming calls
 app.post('/webhook/voice', (req, res) => {
@@ -292,7 +292,7 @@ app.post('/webhook/voice', (req, res) => {
     // Start a stream to capture audio
     const start = twiml.start();
     start.stream({
-        url: `wss://work-2-jnfacjbjjbrdzrlo.prod-runtime.all-hands.dev`,
+        url: `wss://work-2-uqgmjligulgfvwib.prod-runtime.all-hands.dev`,
         track: 'both_tracks'
     });
     
@@ -336,7 +336,7 @@ app.get('/test/twilio', async (req, res) => {
                 account_sid: account.sid,
                 account_status: account.status,
                 webhook_url: `${WEBHOOK_URL}/webhook/voice`,
-                stream_url: `wss://work-2-jnfacjbjjbrdzrlo.prod-runtime.all-hands.dev:${PORT}`
+                stream_url: `wss://work-2-uqgmjligulgfvwib.prod-runtime.all-hands.dev:${PORT}`
             }
         });
     } catch (error) {
@@ -422,7 +422,7 @@ app.get('/test/system', async (req, res) => {
                 status: 'pass',
                 account_status: account.status,
                 webhook_url: `${WEBHOOK_URL}/webhook/voice`,
-                stream_url: `wss://work-2-jnfacjbjjbrdzrlo.prod-runtime.all-hands.dev:${PORT}`
+                stream_url: `wss://work-2-uqgmjligulgfvwib.prod-runtime.all-hands.dev:${PORT}`
             };
         } else {
             results.tests.twilio = {
@@ -476,7 +476,7 @@ app.get('/test/system', async (req, res) => {
         results.tests.websocket = {
             status: 'pass',
             port: PORT,
-            url: `wss://work-2-jnfacjbjjbrdzrlo.prod-runtime.all-hands.dev:${PORT}`,
+            url: `wss://work-2-uqgmjligulgfvwib.prod-runtime.all-hands.dev:${PORT}`,
             message: 'Ready for Twilio streams'
         };
     } catch (error) {
@@ -548,7 +548,7 @@ httpServer.listen(PORT, '0.0.0.0', () => {
     console.log('🚀 Starting AI Calling Backend Server...');
     console.log(`📞 TW2GEM Server running on port ${PORT}`);
     console.log(`🔗 Twilio webhook URL: ${WEBHOOK_URL}/webhook/voice`);
-    console.log(`🎵 Twilio stream URL: wss://work-2-jnfacjbjjbrdzrlo.prod-runtime.all-hands.dev:${PORT}`);
+    console.log(`🎵 Twilio stream URL: wss://work-2-uqgmjligulgfvwib.prod-runtime.all-hands.dev:${PORT}`);
     console.log(`🤖 Gemini API: ${process.env.GEMINI_API_KEY ? '✅ Configured' : '❌ Not configured'}`);
     console.log(`🏥 Health check: ${WEBHOOK_URL}/health`);
     console.log(`🧪 System tests: ${WEBHOOK_URL}/test/system`);

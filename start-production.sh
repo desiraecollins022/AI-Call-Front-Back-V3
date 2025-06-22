@@ -93,6 +93,11 @@ if [ ! -f "server-standalone.js" ]; then
     exit 1
 fi
 
+if [ ! -f "server-standalone-multitenant.js" ]; then
+    echo "⚠️ WARNING: server-standalone-multitenant.js not found!"
+    echo "Multi-tenant functionality will not be available."
+fi
+
 if [ ! -f "ecosystem.config.cjs" ]; then
     echo "❌ ERROR: ecosystem.config.cjs not found!"
     exit 1
@@ -115,10 +120,18 @@ pm2 status
 # Test health endpoints
 echo ""
 echo "🏥 Testing health endpoints..."
-if curl -s http://localhost:12002/health > /dev/null; then
+if curl -s http://localhost:12001/health > /dev/null; then
     echo "✅ Backend health check: PASSED"
 else
     echo "❌ Backend health check: FAILED"
+fi
+
+if [ -f "server-standalone-multitenant.js" ]; then
+    if curl -s http://localhost:12003/health > /dev/null; then
+        echo "✅ Multi-tenant backend health check: PASSED"
+    else
+        echo "❌ Multi-tenant backend health check: FAILED"
+    fi
 fi
 
 if curl -s http://localhost:12000 > /dev/null; then
@@ -130,9 +143,13 @@ fi
 echo ""
 echo "🎉 AI Call Center is now PRODUCTION READY!"
 echo "=================================================="
-echo "🌐 Frontend: https://work-1-jnfacjbjjbrdzrlo.prod-runtime.all-hands.dev (port 12000)"
-echo "🔧 Backend: https://work-2-jnfacjbjjbrdzrlo.prod-runtime.all-hands.dev (port 12001)"
-echo "🏥 Health Check: https://work-2-jnfacjbjjbrdzrlo.prod-runtime.all-hands.dev:12002/health"
+echo "🌐 Frontend: https://work-1-uqgmjligulgfvwib.prod-runtime.all-hands.dev (port 12000)"
+echo "🔧 Backend: https://work-2-uqgmjligulgfvwib.prod-runtime.all-hands.dev (port 12001)"
+echo "🏥 Health Check: https://work-2-uqgmjligulgfvwib.prod-runtime.all-hands.dev/health"
+if [ -f "server-standalone-multitenant.js" ]; then
+    echo "🔧 Multi-tenant Backend: https://work-3-uqgmjligulgfvwib.prod-runtime.all-hands.dev (port 12003)"
+    echo "🏥 Multi-tenant Health Check: https://work-3-uqgmjligulgfvwib.prod-runtime.all-hands.dev/health"
+fi
 echo ""
 echo "📋 Management Commands:"
 echo "  pm2 status          - Check application status"
@@ -143,6 +160,6 @@ echo "  pm2 delete all      - Delete all services"
 echo "  pm2 monit           - Monitor resources"
 echo ""
 echo "🔧 Quick Health Check:"
-echo "  curl http://localhost:12002/health"
+echo "  curl http://localhost:12001/health"
 echo ""
 echo "✨ System Status: ONLINE ✨"

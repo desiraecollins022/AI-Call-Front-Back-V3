@@ -20,6 +20,7 @@ import BillingPage from './pages/BillingPage';
 import StatusPage from './pages/StatusPage';
 import SettingsPage from './pages/SettingsPage';
 import AdminUsersPage from './pages/AdminUsersPage';
+import RoutingPage from './pages/RoutingPage';
 import Layout from './components/Layout';
 import LoadingSpinner from './components/LoadingSpinner';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -57,6 +58,11 @@ function AppContent() {
         <Route path="/agents" element={
           <ProtectedRoute requiredPermission="agents">
             <AgentsPage />
+          </ProtectedRoute>
+        } />
+        <Route path="/routing" element={
+          <ProtectedRoute requiredPermission="agents">
+            <RoutingPage />
           </ProtectedRoute>
         } />
         <Route path="/calls" element={
